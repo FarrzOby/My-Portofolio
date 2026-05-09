@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail UI Project</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. DETAIL TYPOGRAPHY: Menggunakan font yang lebih modern */
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Segoe UI', sans-serif; 
+        }
+
+        /* 2. DETAIL CARD: Membuat efek glassmorphism sederhana */
+        .custom-card {
+            background: white;
+            border-radius: 25px; /* Lebih bulat = lebih modern */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05); /* Bayangan sangat halus */
+            padding: 40px;
+            transition: transform 0.3s ease; /* Persiapan untuk animasi */
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px); /* Efek melayang saat kursor di atasnya */
+        }
+
+        /* 3. DETAIL BUTTON: Membuat Gradasi dan Efek Glow */
+        .btn-custom {
+            background: linear-gradient(45deg, #3881ff, #005eff); /* Gradasi Oranye-Pink */
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 179, 128);
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            box-shadow: 0 8px 25px rgba(0, 179, 128);
+            color: white;
+            filter: brightness(1.1); /* Sedikit lebih terang saat di-hover */
+        }
+        .judul-keren {
+            font-family: 'Permanent Marker', cursive; /* Nama harus persis sesuai Google Fonts */
+            font-weight: bold;
+            font-size: 3rem;           /* Ukurannya kita perbesar */
+            color: #000f99;
+            transform: rotate(-2deg);  /* DETAIL UI: Sedikit dimiringkan agar efek tulisan tangan terasa nyata */
+            display: inline-block;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px #00e1ff; /* DETAIL UI: Efek bayangan tegas di belakang huruf */
+        }
+        .item-fitur {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animasi membal/bouncy */
+    cursor: pointer;
+        }
+        
+        .item-fitur:hover {
+            transform: translateY(-15px); /* Terangkat lebih tinggi */
+            background: #000000; /* Berubah warna jadi gelap */
+            color: white; /* Tulisan jadi putih agar terbaca */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Detail: Supaya teks muted ikut berubah warna pas di-hover */
+        .item-fitur:hover .text-muted {
+            color: #dfe6e9 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="custom-card text-center">
+                <h1 class="judul-keren">My Project-Abyan</h1>
+                <p class="fw-bold text-muted text-center fs-5">
+                    Halo Cuy! di sini gua lagi mencoba mempelajari UI di sebuah Web.
+                    Yuk! Cek sekarang perkembangan Gua
+                </p>
+                
+                <button class="btn btn-custom">Check Sekarang!</button>
+            </div>
+        </div>
+    <div class="container">
+
+       <div class="row">
+           <div class="col-md-4">
+             <div class="card shadow-sm border-0 p-3 item-fitur">
+               <h5 class="fw-bold">Web Dev</h5>
+               <p class="text-muted small">Membangun struktur kode yang bersih dan kuat.</p>
+           </div>
+       </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 p-3 item-fitur">
+            <h5 class="fw-bold">Laravel</h5>
+            <p class="text-muted small">Mengelola database dan logika aplikasi publik. Secara matang</p>
+        </div>
+      </div>
+      <div class="row mt-5">
+    <div class="col-12">
+        <h3 class="fw-bold mb-4">Proyek Unggulan</h3>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card shadow border-0 overflow-hidden item-fitur">
+            <div style="height: 200px; background: #1e00ff; overflow: hidden;">
+                <img src="blackD.jpg" alt="Preview Proyek" 
+                   style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="card-body">
+                <h5 class="fw-bold">Aplikasi Inventaris Laragon</h5>
+                <p class="text-muted">Mengelola data barang dengan sistem Laravel dan Bootstrap.</p>
+                <a href="#" class="btn btn-outline-warning btn-sm rounded-pill">Lihat Detail</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card shadow border-0 overflow-hidden item-fitur">
+            <div style="height: 200px; background: #6c5ce7; overflow: hidden;">
+                <img src="uWu.jpg" alt="Preview Proyek" 
+                   style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="card-body">
+                <h5 class="fw-bold">Design System Pro</h5>
+                <p class="text-muted">Koleksi komponen UI yang sangat detail dan responsif.</p>
+                <a href="#" class="btn btn-outline-warning btn-sm rounded-pill">Lihat Detail</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
