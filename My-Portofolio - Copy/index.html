@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyan Farras | Web Dev & UI Designer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0b0b0d;
+            --card-bg: #16161a;
+            --primary-accent: #6c5ce7;
+            --secondary-accent: #ff4757;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+        
+        /* ANIMATED BACKGROUND (HAEKAL STYLE) */
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: #ffffff; 
+            overflow-x: hidden; 
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 71, 87, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(108, 92, 231, 0.05) 0%, transparent 60%);
+            z-index: -1;
+            animation: auraMove 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes auraMove {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(5%, 2%); }
+        }
+
+        .marker { font-family: 'Permanent Marker', cursive; }
+
+        /* GLOBAL INTERACTIVE EFFECT */
+        h1, h2, h3, h4, h5, h6, p, span, i, .nav-link, .skill-box-ryan, .sosmed-box, .contact-card-ryan {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        p:hover { transform: translateX(8px); color: rgba(255, 255, 255, 1); }
+
+        /* NAVBAR PILL BEZIER */
+        .navbar { background: rgba(11, 11, 13, 0.85) !important; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 0; }
+        .nav-link { color: #fff !important; font-weight: 600; position: relative; padding: 8px 20px !important; z-index: 1; }
+        .nav-link::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(108, 92, 231, 0.15); border: 1px solid rgba(108, 92, 231, 0.3); border-radius: 50px; z-index: -1; transform: scale(0); opacity: 0; transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+        .nav-link:hover::before { transform: scale(1); opacity: 1; }
+        .nav-link:hover { color: var(--primary-accent) !important; transform: translateY(-2px); }
+
+        /* TEXT EFFECTS (SHIMMER & STROKE) */
+        .text-stroke { 
+            color: transparent; 
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4); 
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+        }
+        
+        .glow-text { 
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe, #fff, #6c5ce7);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+            font-weight: 700;
+        }
+        @keyframes shimmer { to { background-position: 200% center; } }
+
+        /* HERO AREA */
+        .hero-section { padding: 150px 0 100px; }
+        .hero-foto { width: 420px; height: 420px; object-fit: cover; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; border: 8px solid var(--card-bg); animation: morph 8s ease-in-out infinite; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hero-foto:hover { transform: scale(1.1) rotate(3deg); border-color: var(--primary-accent); box-shadow: 0 0 50px rgba(108, 92, 231, 0.5); }
+        @keyframes morph { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; } }
+
+        /* ABOUT CARD */
+        .about-card { background: var(--card-bg); border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; transition: 0.4s; }
+        .about-card:hover { border-color: var(--primary-accent); box-shadow: 0 10px 40px rgba(108, 92, 231, 0.2); transform: translateY(-5px); }
+
+        /* SKILLS GRID (UPGRADED: LOGO + BAR) */
+        .skill-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .skill-box-ryan { 
+            background: var(--card-bg); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            padding: 20px; 
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        .skill-box-ryan:hover { 
+            border-color: var(--primary-accent); 
+            transform: translateY(-10px) scale(1.02); 
+            background: #1c1c21; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+        }
+        .skill-logo-box {
+            background: #0b0b0d;
+            width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 12px;
+            font-size: 1.8rem;
+            color: var(--primary-accent);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .skill-box-ryan:hover .skill-logo-box { background: var(--primary-accent); color: white; transform: rotate(10deg); }
+        
+        .progress-custom { height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: visible; position: relative; margin-top: 8px; }
+        .progress-bar-glow { background: var(--primary-accent); border-radius: 10px; position: relative; height: 100%; transition: width 1.5s ease-in-out; }
+        .progress-bar-glow::after { content: ""; position: absolute; right: 0; top: -4px; width: 16px; height: 16px; background: #fff; border-radius: 50%; box-shadow: 0 0 15px var(--primary-accent); }
+
+        /* WORK CARD (INTERAKTIF GILA) */
+        /* FEATURED WORK FIX - POJOK KIRI ATAS BADGE */
+        /* WORK CARD (FIX: CLEAN & PERFECT ZOOM) */
+        .work-card { 
+            background: var(--card-bg); 
+            border-radius: 25px; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            overflow: visible; /* Biar bayangan luar (shadow) gak kepotong */
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            position: relative;
+        }
+
+        /* Card-nya tetep naik pas di-hover */
+        .work-card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--primary-accent); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+        }
+
+        /* KUNCI: Potong gambar biar gak bocor keluar kotak */
+        /* FIX: Batasi tinggi container gambar biar gak kegedean */
+        .work-img-container { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 20px; 
+            width: 100%;
+            /* Batasi tinggi maksimal supaya gak memanjang ke bawah di layar gede */
+            height: 400px; 
+            background: #000; /* Dasar item biar logo putihnya kontras */
+        }
+        
+        .work-img-container img { 
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%); /* Logo bener-bener di tengah */
+            width: 90%; /* Logo gak mepet pinggir */
+            height: auto;
+            object-fit: contain; /* Logo UTUH, gak kepotong, gak gepeng */
+            transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        /* Interaksi pas di-hover: Logo aja yang nge-zoom dikit */
+        .work-img-container:hover img { 
+            transform: translate(-50%, -50%) scale(1.1); 
+        }
+
+        /* Overlay (Ikon Plus) */
+        .work-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            display: flex; align-items: center; justify-content: center; 
+            opacity: 0; transition: 0.4s; background: rgba(108, 92, 231, 0.1); 
+            z-index: 2;
+        }
+
+        .work-img-container:hover .work-overlay { 
+            opacity: 1; 
+        }
+
+        /* CONTACT & SOSMED (POINT 2) */
+        .contact-card-ryan { background: #111114; padding: 25px; border-radius: 15px; border-left: 5px solid var(--primary-accent); margin-bottom: 20px; display: flex; align-items: center; gap: 20px; transition: 0.4s; }
+        .contact-card-ryan:hover { transform: translateX(15px); background: #1a1a1f; border-left-width: 10px; }
+        .form-control-ryan { background: #16161a; border: 1px solid #2d2d32; color: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; transition: 0.3s; }
+        .form-control-ryan:focus { background: #1f1f23; border-color: var(--primary-accent); box-shadow: 0 0 15px rgba(108, 92, 231, 0.2); color: white; }
+        .btn-send-ryan { background: var(--primary-accent); color: white; border: none; width: 100%; padding: 15px; border-radius: 50px; font-weight: 700; text-transform: uppercase; transition: 0.4s; }
+        .btn-send-ryan:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4); }
+
+        .sosmed-box {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-decoration: none; color: white;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 120px;
+        }
+        .sosmed-box:hover {
+            background: #1c1c21; border-color: var(--primary-accent);
+            transform: translateY(-15px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(108, 92, 231, 0.3);
+            color: var(--primary-accent);
+        }
+        .sosmed-box i { font-size: 2.2rem; margin-bottom: 10px; }
+        .sosmed-box span { font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+
+        .floating-tag { position: absolute; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 15px; border-radius: 12px; font-size: 13px; animation: floating 3s ease-in-out infinite; z-index: 5; }
+        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand marker text-white fs-2" href="#">About <span style="color: var(--primary-accent);">Abyan</span></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="#projects">Work</a></li>
+                    <li class="nav-item"><a class="nav-link btn-main ms-lg-4 px-4 py-2" style="background: var(--primary-accent); border-radius: 50px; text-decoration: none; color: white;" href="#contact">Let's Talk</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h5 class="fw-bold mb-3" style="letter-spacing: 4px; color: var(--primary-accent);">WEB DEVELOPMENT ENTHUSIAST</h5>
+                    <h1 class="display-1 fw-bold mb-4">
+                        HI <span class="text-stroke">THERE</span><br>
+                        I'M <span class="marker glow-text">Abyan Farras</span>
+                    </h1>
+                    <p class="fs-5 text-white mb-5 opacity-75" style="max-width: 550px;">Siswa RPL di SMK Negeri 4 Kota Tangerang. Fokus pada pengembangan <span class="text-warning fw-bold">Front-end Web</span> dan <span class="text-warning fw-bold">UI/UX Design</span>.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#projects" class="btn px-4 py-2 text-white fw-bold shadow-lg" style="background: var(--primary-accent); border-radius: 50px;">Featured Projects</a>
+                        <a href="https://github.com/FarrzOby" target="_blank" class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold">GitHub <i class="fab fa-github ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center mt-5 mt-lg-0">
+                    <div class="foto-wrapper position-relative d-inline-block">
+                        <div class="floating-tag" style="top: 10%; left: -30px;">🚀 Communication</div>
+                        <div class="floating-tag" style="bottom: 15%; right: -30px; animation-delay: 1s;">🎨 UI Designer</div>
+                        <img src="Example1.jpg" alt="Abyan" class="hero-foto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="about-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 mb-4 text-center text-lg-start">
+                        <h2 class="display-4 fw-bold">ABOUT <span class="text-stroke">ME</span></h2>
+                        <div class="mt-3 mx-auto mx-lg-0" style="width: 80px; height: 4px; background: var(--primary-accent);"></div>
+                    </div>
+                    <div class="col-lg-7">
+                        <p class="fs-5 text-white mb-4" style="line-height: 1.8;">
+                            Saya adalah siswa <span class="text-primary fw-bold">Rekayasa Perangkat Lunak (RPL)</span> yang memiliki minat besar dalam dunia teknologi.
+                        </p>
+                        <p class="text-white opacity-75 mb-4">
+                            Berbekal pengalaman dalam pembuatan proyek website, database, hingga desain UI/UX. Saya terbiasa menggunakan <span class="text-white">Figma</span> dan <span class="text-white">Canva</span> untuk merancang antarmuka yang user-friendly. Saya memiliki kemampuan komunikasi yang baik, mampu bekerja efektif dalam tim, dan selalu haus akan tantangan baru untuk meningkatkan kompetensi saya di bidang IT.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-sm-6"><i class="fas fa-map-marker-alt text-primary me-2"></i> Tangerang, Banten</div>
+                            <div class="col-sm-6"><i class="fas fa-graduation-cap text-primary me-2"></i> SMKN 4 Kota Tangerang</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5">
+        <div class="container py-5">
+            <h2 class="display-5 fw-bold mb-5">Tech <span class="text-stroke">Expertise</span></h2>
+            <div class="skill-wrapper">
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fab fa-html5"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">HTML5</h6><span class="text-primary fw-bold">90%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fab fa-css3-alt"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">CSS3 / Bootstrap</h6><span class="text-primary fw-bold">85%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 85%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fab fa-js"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">JavaScript</h6><span class="text-primary fw-bold">65%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 65%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fab fa-laravel"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">PHP / Laravel</h6><span class="text-primary fw-bold">75%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 75%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fab fa-figma"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">UI/UX Figma</h6><span class="text-primary fw-bold">80%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 80%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fas fa-database"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">MySQL</h6><span class="text-primary fw-bold">70%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 70%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fas fa-palette"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">Canva Design</h6><span class="text-primary fw-bold">85%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 85%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fas fa-code"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">VS Code</h6><span class="text-primary fw-bold">90%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fab fa-github"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">Git Hub</h6><span class="text-primary fw-bold">75%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 75%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fas fa-comments"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">Communication</h6><span class="text-primary fw-bold">90%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-box-ryan">
+                    <div class="skill-logo-box"><i class="fas fa-users"></i></div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between mb-1"><h6 class="mb-0 fw-bold">Teamwork</h6><span class="text-primary fw-bold">95%</span></div>
+                        <div class="progress-custom"><div class="progress-bar-glow" style="width: 95%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-5">
+    <div class="container py-5">
+        <h2 class="display-4 fw-bold mb-5 text-center marker">Featured <span class="text-stroke">Work</span></h2>
+        
+        <div class="work-card p-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="work-img-container shadow-lg">
+                        <img src="1.png" class="img-fluid" alt="Kantin Siswa">
+                        <div class="work-overlay">
+                            <i class="fas fa-expand text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5 mt-4 mt-lg-0">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <div style="width:20px; height:2px; background:var(--primary-accent);"></div>
+                        <span class="text-primary fw-bold small text-uppercase" style="letter-spacing: 1px;">Team Project</span>
+                    </div>
+                    <h3 class="fw-bold text-white mb-3">Kantin Siswa</h3>
+                    <p class="text-white opacity-75 mb-4" style="line-height: 1.8;">Merancang UI/UX yang intuitif menggunakan Figma dan menyusun konsep alur kerja sistem Point of Sale berbasis web untuk pengelolaan kantin sekolah yang efisien.</p>
+                    <div class="d-flex gap-2 mb-4">
+                        <span class="badge bg-dark border border-secondary p-2"><i class="fab fa-figma text-primary me-1"></i> Figma</span>
+                        <span class="badge bg-dark border border-secondary p-2"><i class="fab fa-laravel text-danger me-1"></i> Laravel</span>
+                    </div>
+                    <a href="https://github.com/FarrzOby/kantin-siswa" target="_blank" class="btn px-4 py-2 text-white fw-bold shadow-sm" style="background: var(--primary-accent); border-radius: 50px; text-decoration: none;">View Repository <i class="fab fa-github ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-6 mb-5">
+                    <h2 class="display-5 fw-bold mb-4">Contact Me</h2>
+                    <p class="opacity-75 mb-5">Punya ide proyek menarik atau sekadar ingin berdiskusi? Hubungi saya melalui detail di bawah ini atau kirimkan pesan langsung.</p>
+                    <div class="contact-card-ryan">
+                        <i class="fab fa-whatsapp text-primary"></i>
+                        <div><h6 class="mb-0 fw-bold">WhatsApp</h6><small class="text-white">+62 895-2671-7201</small></div>
+                    </div>
+                    <div class="contact-card-ryan">
+                        <i class="fas fa-envelope text-primary"></i>
+                        <div><h6 class="mb-0 fw-bold">Email</h6><small class="text-white">abyanfarz@gmail.com</small></div>
+                    </div>
+                    <div class="contact-card-ryan">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                        <div><h6 class="mb-0 fw-bold">Address</h6><small class="text-white">Kota Tangerang, Banten</small></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-card p-4">
+                        <h3 class="fw-bold mb-4 text-white">Send <span class="text-white">Message</span></h3>
+                        <form>
+                            <input type="text" class="form-control-ryan w-100" placeholder="Your name">
+                            <input type="email" class="form-control-ryan w-100" placeholder="Your email">
+                            <textarea class="form-control-ryan w-100" rows="5" placeholder="whats up bro"></textarea>
+                            <button type="submit" class="btn-send-ryan mt-3">Kirim Pesan <i class="fas fa-paper-plane ms-2"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 text-center border-top border-secondary border-opacity-10">
+        <div class="container">
+            <h4 class="marker mb-5 opacity-75">Connect With Me</h4>
+            <div class="row justify-content-center g-4 mb-5">
+                <div class="col-6 col-md-3">
+                    <a href="https://github.com/FarrzOby" target="_blank" class="sosmed-box">
+                        <i class="fab fa-github"></i>
+                        <span>GITHUB</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="https://instagram.com/USERNAME_LU" target="_blank" class="sosmed-box">
+                        <i class="fab fa-instagram"></i>
+                        <span>INSTAGRAM</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="https://tiktok.com/@USERNAME_LU" target="_blank" class="sosmed-box">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TIKTOK</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="https://linkedin.com/in/USERNAME_LU" target="_blank" class="sosmed-box">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LINKEDIN</span>
+                    </a>
+                </div>
+            </div>
+            <p class="text-white small opacity-50">© 2026 Muhammad Abyan Farras • Tangerang, Indonesia</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+<script>
+VANTA.FOG({
+  el: "body",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  /* RACIKAN WARNA ABYAN GLOOMY STYLE */
+  highlightColor: 0x6c5ce7,   /* Ungu Terang lu */
+  midtoneColor: 0x3f4aff,     /* Biru Glow lu */
+  lowlightColor: 0x0b0b0d,    /* Hitam Dasar web lu */
+  baseColor: 0x050505,        /* Warna Dasar Kabut */
+  blurFactor: 0.60,           /* Kehalusan kabut */
+  speed: 1.50,                /* Kecepatan gerak kabut */
+  zoom: 5.00                  /* Jarak pandang */
+})
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
